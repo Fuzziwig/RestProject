@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Student</title>
+</head>
+<body>
+<div class="container-fluid">
+    <h1>Edit Student</h1>
+    <form action="#" th:action="@{/updateStudent/{id}(id=${student.id})}" th:object="${student}" method="post">
+            <table>
+                <tr>
+                    <td><label for="studentname">Student Name</label></td>
+                    <td><input type="text" th:field="*{studentName}" class="form-control" id="studentName" placeholder="Student Name"></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Student Email</label></td>
+                    <td><input type="text" th:field="*{email}" class="form-control" id="email" placeholder="Student Email"></td>
+                </tr>
+                <tr>
+                    <td><label for="supervisor">Supervisor</label></td>
+                    <td><input type="number" th:field="*{supervisor.id}" class="form-control" id="supervisor" placeholder="supervisor" min="1" max="2147483647" required oninvalid="this.setCustomValidity('choose a valid number')" oninput="setCustomValidity('')"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="submit" value="Update"></td>
+                <tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+</head>
+<body>
+
+<h1>Add Student</h1>
+<form action="#" th:action="@{/addStudent}" th:object="${newstudent}" method="post">
+    <table>
+        <tr>
+            <td><label for="studentname">Student Name</label></td>
+            <td><input type="text" th:field="*{studentName}" class="form-control" id="studentName" placeholder="Student Name"></td>
+        </tr>
+        <tr>
+            <td><label for="email">Student Email</label></td>
+            <td><input type="text" th:field="*{email}" class="form-control" id="email" placeholder="Student Email"></td>
+        </tr>
+        <tr>
+            <td><label for="supervisor">Supervisor</label></td>
+            <td><input type="number" th:field="*{supervisor}" class="form-control" id="supervisor" placeholder="supervisor" min="1" max="2147483647" required oninvalid="this.setCustomValidity('choose a valid number')" oninput="setCustomValidity('')"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="submit" value="Add Student"></td>
+        <tr>
+    </table>
+</form>
+
+<h1>Students</h1>
+<table>
+    <td><label for="studentname">Student Name</label></td>
+    <td><label for="email">Student Email</label></td>
+    <td><label for="supervisor">Supervisor ID</label></td>
+    <td><label for="supervisor">Supervisor Name</label></td>
+<tr th:each="student : ${students}">
+    <td><input type="text" th:value="${student.studentName}" /></td>
+    <td><input type="text" th:value="${student.email}" /></td>
+    <td><input type="number" th:value="${student.supervisor.getId()}" /></td>
+    <td th:text="${student.supervisor.getName()}"></td>
+    <td><a th:href="@{/editStudent/{id}(id=${student.id})}"><button type="submit" formmethod="post">Edit</button></a></td>
+    <td><a th:href="@{/deleteStudent/{id}(id=${student.id})}"><button>Delete</button></a></td>
+</tr>
+    </table>
+
+</body>
+</html>
